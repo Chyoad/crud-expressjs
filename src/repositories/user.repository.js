@@ -32,9 +32,16 @@ const updateUser = async (id, userData) => {
   });
 };
 
+const deleteUser = async (id) => {
+  await prisma.user.delete({
+    where: { id },
+  });
+};
+
 export default {
   insertUser,
   findUsers,
   findUserById,
   updateUser,
+  deleteUser
 };

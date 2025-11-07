@@ -46,9 +46,20 @@ const editUserById = async (req, res) => {
   }
 };
 
+const deleteUserById = async (req, res) => {
+  try {
+    const userId = parseInt(req.params.id);
+    await userService.deleteUserById(userId);
+    res.status(200).json({ message: "User deleted successfully" });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
 export default {
   createUser,
   getAllUsers,
   getUserById,
   editUserById,
+  deleteUserById,
 };
