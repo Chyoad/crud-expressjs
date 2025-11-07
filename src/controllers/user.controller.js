@@ -12,6 +12,28 @@ const createUser = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+
+const getAllUsers = async (req, res) => {
+  try {
+    const users = await userService.getAllUsers();
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+const getUserById = async (req, res) => {
+  try {
+    const userId = parseInt(req.params.id);
+    const user = await userService.getUserById(userId);
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
 export default {
   createUser,
+  getAllUsers,
+  getUserById,
 };
