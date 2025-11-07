@@ -18,8 +18,14 @@ const getUserById = async (id) => {
   return user;
 };
 
+const editUserById = async (id, userData) => {
+  await getUserById(id);
+  return await userRepository.updateUser(id, userData);
+};
+
 export default {
   createUser,
   getAllUsers,
   getUserById,
+  editUserById,
 };

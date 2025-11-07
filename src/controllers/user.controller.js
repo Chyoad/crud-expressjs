@@ -32,8 +32,23 @@ const getUserById = async (req, res) => {
   }
 };
 
+const editUserById = async (req, res) => {
+  try {
+    const userId = parseInt(req.params.id);
+    const userData = req.body;
+    const user = await userService.editUserById(userId, userData);
+    res.status(200).json({
+      data: user,
+      message: "User updated successfully",
+    });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
 export default {
   createUser,
   getAllUsers,
   getUserById,
+  editUserById,
 };
